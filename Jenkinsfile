@@ -5,7 +5,7 @@ pipeline {
         DOTNET_CLI_HOME = '/tmp/dotnet_cli_home'
     }
     stages {
-        stage('Build') {
+        stage('Build dotnet') {
             steps {
                 checkout scm
                 echo 'Building..'
@@ -13,19 +13,22 @@ pipeline {
             }
         
         }
-        stage('Test') {
+        stage('Test dot net') {
             steps {
                 echo 'Testing..'
                 sh "dotnet test"
             }
         }
-        stage('Deploy') {
+        stage('Build Node') {
+            agent {docker {image 'node:16-alpine'}}
             steps {
-                echo 'Deploying....'
+                echo 'Building Node....'
                 dir("/DotnetTemplate.Web")
                 sh "npm install"
                 sh "npm run build"
-                
+                sh "npm t"
+                sh "npm run lint"
+
 
 
             }
