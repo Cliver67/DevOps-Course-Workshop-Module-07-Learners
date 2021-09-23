@@ -3,7 +3,8 @@ pipeline {
     
     stages {
 
-        stage('Build/Test DotNet') {
+        stage('Build/Test DotNet') 
+        {
 
         agent {docker { image 'mcr.microsoft.com/dotnet/sdk:5.0' }}
         environment {DOTNET_CLI_HOME = '/tmp/dotnet_cli_home'}
@@ -15,7 +16,6 @@ pipeline {
                 echo 'Testing....'
                 sh "dotnet test"
             }
-        
         }
         
         stage('Build Node') {
@@ -31,8 +31,6 @@ pipeline {
                 sh "npm t"
                 sh "npm run lint"
                 }
-
-
             }
         }
     }
