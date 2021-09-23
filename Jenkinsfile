@@ -9,7 +9,7 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Building..'
-                sh "dotnet Build"
+                sh "dotnet build"
 
                
             }
