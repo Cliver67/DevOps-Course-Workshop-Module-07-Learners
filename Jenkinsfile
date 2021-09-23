@@ -10,8 +10,6 @@ pipeline {
                 checkout scm
                 echo 'Building..'
                 sh "dotnet build"
-
-               
             }
         
         }
@@ -19,12 +17,17 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh "dotnet test"
-                
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                dir("/DotnetTemplate.Web")
+                sh "npm install"
+                sh "npm run build"
+                
+
+
             }
         }
     }
