@@ -22,12 +22,14 @@ pipeline {
             agent {docker {image 'node:16-alpine'}}
             steps {
                 echo 'Building Node....'
+                echo "Changing working directory"
                 dir("/DotnetTemplate.Web")
+                {
                 sh "npm install"
                 sh "npm run build"
                 sh "npm t"
                 sh "npm run lint"
-
+                }
 
 
             }
