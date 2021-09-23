@@ -24,7 +24,7 @@ pipeline {
             steps {
                 echo 'Building Node....'
                 echo "Changing working directory"
-                dir("/DotnetTemplate.Web")
+                dir("./DotnetTemplate.Web")
                 {
                 sh "npm install"
                 sh "npm run build"
