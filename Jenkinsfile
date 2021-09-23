@@ -3,8 +3,7 @@ pipeline {
     
     stages {
 
-
-        stage('Build') {
+        stage('Build/test DotNet') {
 
         agent {docker { image 'mcr.microsoft.com/dotnet/sdk:5.0' }}
         environment {DOTNET_CLI_HOME = '/tmp/dotnet_cli_home'}
@@ -13,16 +12,13 @@ pipeline {
                 checkout scm
                 echo 'Building..'
                 sh "dotnet build"
+                echo 'Testing....'
+                sh "dotnet test"
             }
         
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-                sh "dotnet test"
-            }
-        }
-        stage('Deploy') {
+        
+        stage('Build Node') {
             agent {docker {image 'node:16-alpine'}}
             steps {
                 echo 'Building Node....'
