@@ -6,7 +6,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                bat 'dotnet build'
+                bat "dotnetBuild"
+
                
             }
         
