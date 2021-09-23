@@ -3,7 +3,7 @@ pipeline {
     
     stages {
 
-        stage('Build/test DotNet') {
+        stage('Build/Test DotNet') {
 
         agent {docker { image 'mcr.microsoft.com/dotnet/sdk:5.0' }}
         environment {DOTNET_CLI_HOME = '/tmp/dotnet_cli_home'}
@@ -20,6 +20,7 @@ pipeline {
         
         stage('Build Node') {
             agent {docker {image 'node:16-alpine'}}
+            environment {DOTNET_CLI_HOME = '/tmp/dotnet_cli_home'}
             steps {
                 echo 'Building Node....'
                 echo "Changing working directory"
