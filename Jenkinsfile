@@ -18,6 +18,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                sh "dotnet test"
+                
             }
         }
         stage('Deploy') {
