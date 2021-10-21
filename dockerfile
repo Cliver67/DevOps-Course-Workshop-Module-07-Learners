@@ -13,4 +13,4 @@ RUN npm install
 
 RUN npm run build
 
-ENTRYPOINT dotnet run
+ENTRYPOINT ["dotnet", "run"]
