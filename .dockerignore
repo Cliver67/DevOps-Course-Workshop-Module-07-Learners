@@ -965,6 +965,6 @@ MigrationBackup/
 
 
 # Dotnet templates  nodes
-DontnetTemplate.Web/node_modules
+DotnetTemplate.Web/node_modules
 
 # End of https://www.gitignore.io/api/aspnetcore,visualstudio
