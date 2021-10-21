@@ -27,3 +27,21 @@ jobs:
     - name: Run the linter on the TypeScript code
       working-directory: ./DotnetTemplate.Web
       run: npm run lint
+
+  # below to issue docker build and push commands 
+
+    - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+    
+    
+    - name: run the docker build
+      run: docker build --tag m8 .
+
+    - name: change tag 
+      run : docker tag m8 cliver67/m8
+
+    - name: Submit a docker push 
+      run: docker push cliver67/m8
